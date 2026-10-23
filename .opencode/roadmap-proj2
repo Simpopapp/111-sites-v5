@@ -1,0 +1,50 @@
+# Roadmap — VibeCoder Academy · project2
+
+Dependência: F0 → F1 → (F2, F3, F4 em ondas) → F5 → F6 → (F7, F8) → F9. Contratos (F0/F1) precedem todo o resto; ondas consomem apenas arquivos de dono exclusivo (PRD §6).
+
+## F0 — Contratos e decisões
+- [x] Decisões D1–D14 registradas; AGENTS.md recebe as regras estruturais novas; PRD ↔ roadmap coerentes
+Gates: AGENTS.md atualizado; coerência central verificada.
+
+## F1 — Fundação editorial
+- [x] `lessons/index.ts` + contrato `Lesson` + `coverage.ts`; `relations.ts` tipado com seed D4
+- [x] `exercises.ts` (motor + 6 tipos + Feedback diagnóstico); `learning.ts` + `use-learning.ts` (transição do readiness, legados preservados)
+Gates: tsgo limpo; testes de contrato verdes (52/52); migração 1:1 idempotente testada.
+
+## F2 — Precisão dos simuladores (pacote s2)
+- [x] S4 semântico (4 casos + "fora do modelo" + parametrizado que casa literal); S5 dois modos + 3 causas de falha + DLQ só por esgotamento
+- [x] S3 parametrizado (lista, cardinalidade, custo) com fórmula transparente; S6 nearest-rank + exemplo 99×100/1×10.000 (P99=100/máx=10.000/média=199) + cauda singular; links tipados practice/context sem 404
+Gates: testes das specs 4.1–4.5 verdes (tsgo limpo; 64/64 vitest); nenhum link antigo quebrado (13/74/79 agora context, verificado).
+
+## F3 — Laboratório focado (pacote s4)
+- [x] `/labs/$id` com bancada completa (cenário→controles→representação→evidência→interpretação→desafio) p/ os 6 labs; instrumentos request-flow, latency-histogram, state-machine
+- [x] Hub `/sandboxes` de escolha comparativa + redirect `?s=` compatível
+Gates: 6 rotas resolvem (16/16 checks Playwright); redirect testado; tentativa preservada ao trocar config (pubsub corrigido p/ mutar config sem resetar contadores); E2E fluxos 3–6 verdes; tsgo limpo; 66/66 vitest.
+
+## F4 — Aula v2 (pacotes s1+s3+s5)
+- [x] 11 lições âncora (Traffic 1/3/4/5, Performance 2/27/91, Resilience 10/11/12/13) com analogias revisadas; tarefas de prática (6 tipos, rubricas + feedback com causa)
+- [x] `/concepts/$id` render em camadas (lição completa vs blocos legados + aviso honesto)
+Gates: lições integradas do relatório s1 com practiceIds sincronizados ao motor (D15); E2E fluxo 2: 7/7 checks verdes (aula v2, prática com feedback diagnóstico, legado + aviso honesto, console limpo); tsgo limpo; 66/66 vitest; 100 conceitos legados intactos.
+
+## F5 — Progresso honesto
+- [x] `recommendNext` com motivo obrigatório; `/progress` com 6 dimensões (semântica D9), denominadores rotulados, evidências inspecionáveis; `/readiness` renomeado p/ registro de aplicação
+Gates: tsgo limpo; 86/86 vitest (12 de semântica D9 + 6 de recommend); E2E fluxo 7 verificado (27/27 checks em e2e_f5f6.py); zero "Mission ready" no corpo das páginas (checado).
+
+## F6 — Home ponto de trabalho
+- [x] Home primeiro acesso vs retorno (atividade em andamento + revisão + objetivo); busca por sintoma/sinônimo (`symptoms.ts`); cards com problema/objetivo/nível; teasers com fenômeno observável
+Gates: `?q=`/`?cat=` preservados (teste de rota + E2E); E2E fluxo 1: retorno leva ao ponto exato (27/27 checks); estado vazio com 3 rotas de saída (checado).
+
+## F7 — Missões
+- [x] `/missions` + `charged-but-lost` (timeout/retry/backoff/idempotência) + `slow-catalog` (round-trips→N+1→lote/JOIN→índice→cache→invalidação→percentis) completas
+- [x] Dossiê de aprendizagem salvo em `learning.missions`
+Gates: E2E fluxo 8 verificado (22/22 checks em /tmp/browser/vibecoder/e2e_f7f8.py — ciclo completo, sem spoiler na transfer, dossiê persiste após reload); 15/15 testes de missões; tsgo limpo. Correções da rodada: `missions.tsx` virou layout com `<Outlet />` (o índice pintava por cima do detalhe); sync de hidratação do dossiê em `missions.$slug.tsx`.
+
+## F8 — Identidade v2 e a11y
+- [x] Tokens paper/accent-2/ink; violeta só marca; fim do uppercase em explicações; mobile por tarefa + equivalências textuais + teclado + reduced-motion
+- [x] Roteiro E2E atualizado (checks de texto sem body.upper())
+Gates: zero cor hardcoded verificada (rg — restam só `text-[0.8rem]` de tamanho em shadcn); uppercase restrito a rótulos curtos (kickers/labels, rg em 10 arquivos); E2E verde com roteiro novo (comparações case-insensitive); screenshots desktop+mobile em /tmp/browser/vibecoder/screenshots/. Contraste AA dos pares paper/ink declarado nos tokens OKLCH de `src/styles.css`.
+
+## F9 — Verificação e fechamento
+- [ ] E2E completo (8 fluxos do PRD §10) + ≥ 60 testes vitest + tsgo limpo
+- [ ] Stage status em `docs/planning/stages/` + relatório ao monitor + "remix finalizado (+N)"
+Gates: parcial nesta rodada — 101/101 vitest (≥60 ✓), tsgo limpo ✓, E2E reduzido 22/22 (fluxos 1–8 em checkpoints) + monitor inacessível (runtime OpenCode falha com UnknownError, refs err_cc839d3f/err_fa677f19/err_52eaceb9 — bloqueio externo, documentado em stage-08-status.md). Falta: roteiro E2E integral do PRD §10 e aceite global §9. Próximo remix: lições das categorias restantes, instrumentos event-track/query-explainer/table, missões 12.3–12.5, calibração de retenção.

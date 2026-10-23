@@ -1,0 +1,48 @@
+# Roadmap — VibeCoder Academy · project1
+
+Dependência: F0 → F1 → (F2) → (F3, F4, F5, F6) → F7. Contratos (F1) precedem todo o resto; fases paralelas consomem apenas seus arquivos exclusivos.
+
+## F0 — Contratos e fundamentos
+- [x] Confirmar stack limpa (rotas existentes, shadcn disponível, `/` livre)
+- [x] Tipos/categorias do contrato definidos (seção 4 do PRD)
+Gates: tipos compilam; decisões D1–D12 registradas no PRD.
+
+## F1 — Dados dos 111 conceitos (contrato central)
+- [x] Script de extração de `project1.md` (bloco `itemsData`) → `src/lib/concepts.ts`
+- [x] Teste `src/test/concepts.test.ts` + revisão QA por subagente (amostra vs fonte)
+Gates: G1 integral (111 itens, ids únicos, nomes = Parte 1, campos ≥20 chars, cats válidas); vitest verde.
+
+## F2 — Design system e shell
+- [x] Tokens "Mission Control" em `src/styles.css` + fontes/meta no `__root.tsx`
+- [x] `src/components/site-header.tsx` com readiness compacto (montado no __root, store compartilhado)
+Gates: tsgo limpo; sem cor hardcoded; header visível em todas as rotas (E2E).
+
+## F3 — Home (`/`)
+- [x] Hero + destaque de sandboxes + grid de cards (concept-card.tsx)
+- [x] Busca com estado em URL (`?q=`, `?cat=`) + pills de categoria + estado vazio
+Gates: 111 cards; busca local + debounce → URL compartilhável (?q=circuit OK); head() única da index.
+
+## F4 — Detalhe do conceito (`/concepts/$id`)
+- [x] Rota com validação de id + notFound + blocos ELI10/risk/fix + toggle
+- [x] prev/next + link p/ sandbox relacionado + head() por conceito
+Gates: 111 rotas resolvem; 404 em id inválido (E2E); toggle persiste após reload (E2E).
+
+## F5 — Readiness tracker
+- [x] `src/lib/readiness.ts` + hook useSyncExternalStore (hydration-safe, store compartilhado)
+- [x] Página `/readiness` com filtros All/Implemented/Pending por categoria
+Gates: score global reativo (badge 1% ao vivo, E2E); reload preserva; `readiness.test.ts` verde.
+
+## F6 — Sandboxes (6 simuladores)
+- [x] `src/lib/simulators.ts` (lógica pura, rng/tempo injetáveis) + `src/test/simulators.test.ts`
+- [x] S1 Rate Limiter · S2 Circuit Breaker · S3 N+1 vs JOIN · S4 SQL Injection
+- [x] S5 Pub/Sub + DLQ (retry no mesmo worker, 3 falhas → DLQ) · S6 P99/Tail · hub `/sandboxes`
+Gates: specs da seção 7 íntegras; 29 testes verdes; S1–S6 verificados no E2E.
+
+## F7 — Polimento, SEO e verificação E2E
+- [x] head()/OG por rota + acessibilidade (aria-labels, progressbar) + responsividade
+- [x] Playwright E2E (roteiro PRD §18): 22 verificações OK, 0 FAIL, console limpo (só o 404 esperado de /concepts/112)
+Gates: tsgo limpo; vitest 29/29; screenshots em /tmp/browser/vibecoder; G1–G7 verdes.
+
+## Estado p/ retomada
+- Remix concluiu F0–F7 nesta rodada. Correções de verificação: overlay de clique do card (z-index), busca local+debounce, DLQ atingível, header montado no root, hidratação do readiness sem mismatch.
+- Próximo remix: pós-MVP (PRD §19) ou ajustes visuais sob demanda.
