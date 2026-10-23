@@ -45,6 +45,6 @@ Gates: E2E fluxo 8 verificado (22/22 checks em /tmp/browser/vibecoder/e2e_f7f8.p
 Gates: zero cor hardcoded verificada (rg — restam só `text-[0.8rem]` de tamanho em shadcn); uppercase restrito a rótulos curtos (kickers/labels, rg em 10 arquivos); E2E verde com roteiro novo (comparações case-insensitive); screenshots desktop+mobile em /tmp/browser/vibecoder/screenshots/. Contraste AA dos pares paper/ink declarado nos tokens OKLCH de `src/styles.css`.
 
 ## F9 — Verificação e fechamento
-- [ ] E2E completo (8 fluxos do PRD §10) + ≥ 60 testes vitest + tsgo limpo
-- [ ] Stage status em `docs/planning/stages/` + relatório ao monitor + "remix finalizado (+N)"
-Gates: parcial nesta rodada — 101/101 vitest (≥60 ✓), tsgo limpo ✓, E2E reduzido 22/22 (fluxos 1–8 em checkpoints) + monitor inacessível (runtime OpenCode falha com UnknownError, refs err_cc839d3f/err_fa677f19/err_52eaceb9 — bloqueio externo, documentado em stage-08-status.md). Falta: roteiro E2E integral do PRD §10 e aceite global §9. Próximo remix: lições das categorias restantes, instrumentos event-track/query-explainer/table, missões 12.3–12.5, calibração de retenção.
+- [x] E2E completo (8 fluxos do PRD §10) + ≥ 60 testes vitest + tsgo limpo
+- [x] Stage status em `docs/planning/stages/` + relatório ao monitor + "remix finalizado (+N)"
+Gates: 101/101 vitest (≥60 ✓), tsgo limpo ✓, E2E integral 46/46 checks (8 fluxos do §10 em uma sessão, console limpo, roteiro preservado em e2e/e2e_f9.py) + aceite global §9 do planejamento registrado em stage-09-status.md + relatório ao monitor protocolado (runtime OpenCode indisponível — binário removido pelo wipe e proxy /oc 502; bloqueio externo documentado em stage-09-status.md). Próximo remix: lições das categorias restantes, instrumentos event-track/query-explainer/table, missões 12.3–12.5, calibração de retenção.
